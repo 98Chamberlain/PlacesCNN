@@ -61,3 +61,6 @@ target/
 
 # tmp file
 *~
+
+# data file
+*.h5

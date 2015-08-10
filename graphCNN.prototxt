@@ -1,0 +1,51 @@
+name: "graphCNN"
+layers {
+    name: "Data"
+    top: "data"
+    top: "label"
+    type: HDF5_DATA
+    hdf5_data_param {
+        source: "/home/ponu/Documents/PlacesCNN/train.txt"
+        batch_size: 64
+    }
+    include: { phase: TRAIN }
+}
+
+layers {
+    name: "Data"
+    type: HDF5_DATA
+    top: "data"
+    top: "label"
+    hdf5_data_param {
+        source: "/home/ponu/Documents/PlacesCNN/test.txt"
+        batch_size: 64
+    }
+    include: {phase: TEST }
+}
+
+layers {
+    name: "fc1"
+    type: INNER_PRODUCT
+    bottom: "data"
+    top: "fc1"
+    inner_product_param {
+        num_output: 40
+    }
+}
+
+layers {
+    name: "loss"
+    type: EUCLIDEAN_LOSS
+    bottom: "fc1"
+    bottom: "label"
+    top: "loss"
+}
+
+layers {
+    name: "accuracy"
+    type: EUCLIDEAN_LOSS
+    bottom: "fc1"
+    bottom: "label"
+    top: "accuracy"
+    include: {phase: TEST}
+}

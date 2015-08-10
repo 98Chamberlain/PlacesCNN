@@ -1,0 +1,14 @@
+net: "/home/ponu/Documents/PlacesCNN/graphCNN.prototxt"
+test_iter: 6
+test_interval: 100
+base_lr: 0.01
+lr_policy: "fixed"
+weight_decay: 0.01
+stepsize: 300
+gamma: 0.1
+display: 100
+max_iter: 10000
+momentum: 0.9
+snapshot: 1000
+snapshot_prefix: "/home/ponu/tmp/"
+solver_mode: GPU
