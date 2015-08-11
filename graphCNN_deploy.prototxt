@@ -1,0 +1,16 @@
+name: "graphCNN"
+input: "data"
+input_dim: 64
+input_dim: 1
+input_dim: 1
+input_dim: 205
+
+layers {
+    name: "fc1"
+    type: INNER_PRODUCT
+    bottom: "data"
+    top: "fc1"
+    inner_product_param {
+        num_output: 40
+    }
+}
