@@ -6,8 +6,8 @@ input_dim: 1
 input_dim: 205
 
 layers {
-    name: "slicer_label"
-    type: "Slice"
+    name: "slicer"
+    type: SLICE
     bottom: "data"
     top: "abbey"
     top: "airport_terminal"
@@ -136,7 +136,7 @@ layers {
     top: "market"
     top: "monastery"
     top: "museum"
-    top: "nusery"
+    top: "nursery"
     top: "ocean"
     top: "office"
     top: "office_building"
@@ -175,7 +175,7 @@ layers {
     top: "sea_cliff"
     top: "shed"
     top: "shoe_shop"
-    top: "shopfront
+    top: "shopfront"
     top: "shower"
     top: "ski_resort"
     top: "ski_slope"
@@ -215,7 +215,7 @@ layers {
     top: "windmill"
     top: "yard"
     slice_param {
-        axis: 0
+        axis: 1
         slice_point: 1
         slice_point: 2
         slice_point: 3
@@ -427,81 +427,116 @@ layers {
     name: "bedroom_sig"
     bottom: "bedroom"
     top: "bedroom_sig"
-    type: "Sigmoid"
+    type: SIGMOID
+}
+
+layers {
+    name: "dining_room_con"
+    type: CONCAT
+    bottom: "dining_room"
+    bottom: "dinette"
+    top: "dining_room_con"
 }
 
 layers {
     name: "dining_room_sig"
-    type: "Sigmoid"
-    bottom: "dining_room"
-    bottom: "dinette"
+    type: SIGMOID
+    bottom: "dining_room_con"
     top: "dining_room_sig"
 }
 
 layers {
     name: "aquarium_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "aquarium"
     top: "aquarium_sig"
 }
 
 layers {
-    name: "classroom_sig"
-    type: "Sigmoid"
+    name: "classroom_con"
+    type: CONCAT
     bottom: "classroom"
     bottom: "kindergarden_classroom"
+    top: "classroom_con"
+}
+
+layers {
+    name: "classroom_sig"
+    type: SIGMOID
+    bottom: "classroom_con"
     top: "classroom_sig"
 }
 
 layers {
     name: "conference_room_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "conference_room"
     top: "conference_room_sig"
 }
 
 layers {
-    name: "kitchen_sig"
-    type: "Sigmoid"
+    name: "kitchen_con"
+    type: CONCAT
     bottom: "galley"
     bottom: "kitchen"
     bottom: "kitchenette"
+    top: "kitchen_con"
+}
+
+layers {
+    name: "kitchen_sig"
+    type: SIGMOID
+    bottom: "kitchen_con"
     top: "kitchen_sig"
 }
 
 layers {
-    name: "living_room_sig"
-    type: "Sigmoid"
+    name: "living_room_con"
+    type: CONCAT
     bottom: "living_room"
     bottom: "parlor"
+    top: "living_room_con"
+}
+
+layers {
+    name: "living_room_sig"
+    type: SIGMOID
+    bottom: "living_room_con"
     top: "living_room_sig"
 }
 
 layers {
     name: "office_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "office"
     top: "office_sig"
 }
 
 layers {
-    name: "restaurant_sig"
-    type: "Sigmoid"
+    name: "restaurant_con"
+    type: CONCAT
     bottom: "restaurant"
     bottom: "restaurant_kitchen"
+    top: "restaurant_con"
+}
+
+layers {
+    name: "restaurant_sig"
+    type: SIGMOID
+    bottom: "restaurant_con"
     top: "restaurant_sig"
 }
 
 layers {
     name: "supermarket_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "supermarket"
     top: "supermarket_sig"
 }
 
 layers {
-    name: "home_sig"
-    type: "Sigmoid"
+    name: "home_con"
+    type: CONCAT
     bottom: "bedroom_sig"
     bottom: "dining_room_sig"
     bottom: "living_room_sig"
@@ -511,23 +546,37 @@ layers {
     bottom: "closet"
     bottom: "game_room"
     bottom: "home_office"
+    top: "home_con"
+}
+
+layers {
+    name: "home_sig"
+    type: SIGMOID
+    bottom: "home_con"
     top: "home_sig"
 }
 
 layers {
-    name: "workplace_sig"
-    type: "Sigmoid"
+    name: "workplace_con"
+    type: CONCAT
     bottom: "conference_room_sig"
     bottom: "office_sig"
     bottom: "home_office"
     bottom: "conference_center"
     bottom: "waiting_room"
+    top: "workplace_con"
+}
+
+layers {
+    name: "workplace_sig"
+    type: SIGMOID
+    bottom: "workplace_con"
     top: "workplace_sig"
 }
 
 layers {
-    name: "store_sig"
-    type: "Sigmoid"
+    name: "store_con"
+    type: CONCAT
     bottom: "restaurant_sig"
     bottom: "supermarket_sig"
     bottom: "bakery_shop"
@@ -543,12 +592,20 @@ layers {
     bottom: "pantry"
     bottom: "shoe_shop"
     bottom: "shopfront"
+    top: "store_con"
+}
+
+
+layers {
+    name: "store_sig"
+    type: SIGMOID
+    bottom: "store_con"
     top: "store_sig"
 }
 
 layers {
-    name: "indoor_sig"
-    type: "Sigmoid"
+    name: "indoor_con"
+    type: CONCAT
     bottom: "home_sig"
     bottom: "workplace_sig"
     bottom: "store_sig"
@@ -575,16 +632,23 @@ layers {
     bottom: "reception"
     bottom: "restaurant_patio"
     bottom: "shower"
-    bottom: "stage_indoor"
+    bottom: "stage"
     bottom: "staircase"
     bottom: "subway_station"
     bottom: "television_studio"
+    top: "indoor_con"
+}
+
+layers {
+    name: "indoor_sig"
+    type: SIGMOID
+    bottom: "indoor_con"
     top: "indoor_sig"
 }
 
 layers {
-    name: "industrial_sig"
-    type: "Sigmoid"
+    name: "industrial_con"
+    type: CONCAT
     bottom: "airport_terminal"
     bottom: "assembly_line"
     bottom: "construction_site"
@@ -592,12 +656,19 @@ layers {
     bottom: "excavation"
     bottom: "garbage_dump"
     bottom: "parking_lot"
+    top: "industrial_con"
+}
+
+layers {
+    name: "industrial_sig"
+    type: SIGMOID
+    bottom: "industrial_con"
     top: "industrial_sig"
 }
 
 layers {
-    name: "sports_sig"
-    type: "Sigmoid"
+    name: "sports_con"
+    type: CONCAT
     bottom: "baseball_field"
     bottom: "fairway"
     bottom: "golf_course"
@@ -606,61 +677,82 @@ layers {
     bottom: "martial_arts_gym"
     bottom: "bowling_alley"
     bottom: "boxing_ring"
+    top: "sports_con"
+}
+
+layers {
+    name: "sports_sig"
+    type: SIGMOID
+    bottom: "sports_con"
     top: "sports_sig"
 }
 
 layers {
     name: "amusement_park_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "amusement_park"
     top: "amusement_park_sig"
 }
 
 layers {
     name: "bridge_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "bridge"
     top: "bridge_sig"
 }
 
 layers {
     name: "playground_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "playground"
     top: "playground_sig"
 }
 
 layers {
     name: "skyscraper_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "skyscraper"
     top: "skyscraper_sig"
 }
 
 layers {
-    name: "street_sig"
-    type: "Sigmoid"
+    name: "street_con"
+    type: CONCAT
     bottom: "alley"
     bottom: "boardwalk"
     bottom: "crosswalk"
     bottom: "highway"
+    top: "street_con"
+}
+
+layers {
+    name: "street_sig"
+    type: SIGMOID
+    bottom: "street_con"
     top: "street_sig"
 }
 
 layers {
-    name: "church_sig"
-    type: "Sigmoid"
+    name: "church_con"
+    type: CONCAT
     bottom: "abbey"
     bottom: "basilica"
     bottom: "cathedral"
     bottom: "church"
     bottom: "monastery"
+    top: "church_con"
+}
+
+layers {
+    name: "church_sig"
+    type: SIGMOID
+    bottom: "church_con"
     top: "church_sig"
 }
 
 layers {
-    name: "architecture_sig"
-    type: "Sigmoid"
+    name: "architecture_con"
+    type: CONCAT
     bottom: "amusement_park_sig"
     bottom: "bridge_sig"
     bottom: "church_sig"
@@ -676,7 +768,7 @@ layers {
     bottom: "chalet"
     bottom: "courthouse"
     bottom: "courtyard"
-    bottom: "doorway_outdoor"
+    bottom: "doorway"
     bottom: "fire_station"
     bottom: "gas_station"
     bottom: "hotel"
@@ -697,23 +789,36 @@ layers {
     bottom: "temple_south_asia"
     bottom: "tower"
     bottom: "veranda"
+    top: "architecture_con"
+}
+
+layers {
+    name: "architecture_sig"
+    type: SIGMOID
+    bottom: "architecture_con"
     top: "architecture_sig"
 }
 
-
 layers {
-    name: "forest_sig"
-    type: "Sigmoid"
+    name: "forest_con"
+    type: CONCAT
     bottom: "bamboo_forest"
     bottom: "rainforest"
     bottom: "forest_path"
     bottom: "forest_road"
+    top: "forest_con"
+}
+
+layers {
+    name: "forest_sig"
+    type: SIGMOID
+    bottom: "forest_con"
     top: "forest_sig"
 }
 
 layers {
-    name: "garden_sig"
-    type: "Sigmoid"
+    name: "garden_con"
+    type: CONCAT
     bottom: "botanical_garden"
     bottom: "cottage_garden"
     bottom: "formal_garden"
@@ -721,34 +826,55 @@ layers {
     bottom: "orchard"
     bottom: "topiary_garden"
     bottom: "vegetable_garden"
+    top: "garden_con"
+}
+
+layers {
+    name: "garden_sig"
+    type: SIGMOID
+    bottom: "garden_con"
     top: "garden_sig"
 }
 
 layers {
-    name: "plants_sig"
-    type: "Sigmoid"
+    name: "plants_con"
+    type: CONCAT
     bottom: "forest_sig"
     bottom: "garden_sig"
     bottom: "corn_field"
     bottom: "yard"
+    top: "plants_con"
+}
+
+layers {
+    name: "plants_sig"
+    type: SIGMOID
+    bottom: "plants_con"
     top: "plants_sig"
 }
 
 layers {
-    name: "coast_sig"
-    type: "Sigmoid"
+    name: "coast_con"
+    type: CONCAT
     bottom: "coast"
     bottom: "dock"
     bottom: "harbor"
     bottom: "islet"
     bottom: "sandbar"
     bottom: "sea_cliff"
+    top: "coast_con"
+}
+
+layers {
+    name: "coast_sig"
+    type: SIGMOID
+    bottom: "coast_con"
     top: "coast_sig"
 }
 
 layers {
-    name: "ocean_sig"
-    type: "Sigmoid"
+    name: "ocean_con"
+    type: CONCAT
     bottom: "coast"
     bottom: "dock"
     bottom: "harbor"
@@ -756,37 +882,58 @@ layers {
     bottom: "ocean"
     bottom: "sandbar"
     bottom: "sea_cliff"
+    top: "ocean_con"
+}
+
+layers {
+    name: "ocean_sig"
+    type: SIGMOID
+    bottom: "ocean_con"
     top: "ocean_sig"
 }
 
 layers {
-    name: "pond_sig"
-    type: "Sigmoid"
+    name: "pond_con"
+    type: CONCAT
     bottom: "pond"
     bottom: "swamp"
     bottom: "watering_hole"
+    top: "pond_con"
+}
+
+layers {
+    name: "pond_sig"
+    type: SIGMOID
+    bottom: "pond_con"
     top: "pond_sig"
 }
 
 layers {
-    name: "river_sig"
-    type: "Sigmoid"
+    name: "river_con"
+    type: CONCAT
     bottom: "creek"
     bottom: "raft"
     bottom: "river"
+    top: "river_con"
+}
+
+layers {
+    name: "river_sig"
+    type: SIGMOID
+    bottom: "river_con"
     top: "river_sig"
 }
 
 layers {
     name: "swimming_pool_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "swimming_pool"
     top: "swimming_pool_sig"
 }
 
 layers {
-    name: "water_sig"
-    type: "Sigmoid"
+    name: "water_con"
+    type: CONCAT
     bottom: "coast_sig"
     bottom: "ocean_sig"
     bottom: "pond_sig"
@@ -794,27 +941,41 @@ layers {
     bottom: "swimming_pool_sig"
     bottom: "hot_spring"
     bottom: "marsh"
+    top: "water_con"
+}
+
+layers {
+    name: "water_sig"
+    type: SIGMOID
+    bottom: "water_con"
     top: "water_sig"
 }
 
 layers {
     name: "canyon_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "canyon"
     top: "canyon_sig"
 }
 
 layers {
-    name: "desert_sig"
-    type: "Sigmoid"
+    name: "desert_con"
+    type: CONCAT
     bottom: "desert_sand"
     bottom: "desert_vegetation"
+    top: "desert_con"
+}
+
+layers {
+    name: "desert_sig"
+    type: SIGMOID
+    bottom: "desert_con"
     top: "desert_sig"
 }
 
 layers {
-    name: "ice_sig"
-    type: "Sigmoid"
+    name: "ice_con"
+    type: CONCAT
     bottom: "crevasse"
     bottom: "ice_skating_rink"
     bottom: "iceberg"
@@ -823,27 +984,41 @@ layers {
     bottom: "ski_resort"
     bottom: "ski_slope"
     bottom: "snowfield"
+    top: "ice_con"
+}
+
+layers {
+    name: "ice_sig"
+    type: SIGMOID
+    bottom: "ice_con"
     top: "ice_sig"
 }
 
 layers {
-    name: "mountain_sig"
-    type: "Sigmoid"
+    name: "mountain_con"
+    type: CONCAT
     bottom: "mountain"
     bottom: "mountain_snowy"
+    top: "mountain_con"
+}
+
+layers {
+    name: "mountain_sig"
+    type: SIGMOID
+    bottom: "mountain_con"
     top: "mountain_sig"
 }
 
 layers {
     name: "sky_sig"
-    type: "Sigmoid"
+    type: SIGMOID
     bottom: "sky"
     top: "sky_sig"
 }
 
 layers {
-    name: "landscape_sig"
-    type: "Sigmoid"
+    name: "landscape_con"
+    type: CONCAT
     bottom: "plants_sig"
     bottom: "water_sig"
     bottom: "canyon_sig"
@@ -864,38 +1039,58 @@ layers {
     bottom: "market"
     bottom: "picnic_area"
     bottom: "rock_arch"
+    top: "landscape_con"
+}
+
+layers {
+    name: "landscape_sig"
+    type: SIGMOID
+    bottom: "landscape_con"
     top: "landscape_sig"
 }
 
+layers {
+    name: "outdoor_con"
+    type: CONCAT
+    bottom: "architecture_sig"
+    bottom: "landscape_sig"
+    top: "outdoor_con"
+}
 
 layers {
     name: "outdoor_sig"
-    type: "Sigmoid"
-    bottom: "architecture_sig"
-    bottom: "landscape_sig"
+    type: SIGMOID
+    bottom: "outdoor_con"
     top: "outdoor_sig"
 }
 
 layers {
-    name: "root_sig"
-    type: "Sigmoid"
+    name: "root_con"
+    type: CONCAT
     bottom: "indoor_sig"
     bottom: "industrial_sig"
     bottom: "outdoor_sig"
     bottom: "sports_sig"
+    top: "root_con"
+}
+
+layers {
+    name: "root_sig"
+    type: SIGMOID
+    bottom: "root_con"
     top: "root_sig"
 }
 
 layers {
     name: "concat"
-    type: "Concat"
+    type: CONCAT
     bottom: "root_sig"
     bottom: "indoor_sig"
     bottom: "outdoor_sig"
     bottom: "landscape_sig"
     bottom: "sports_sig"
     bottom: "home_sig"
-    bottom: "work_place_sig"
+    bottom: "workplace_sig"
     bottom: "store_sig"
     bottom: "industrial_sig"
     bottom: "architecture_sig"
@@ -931,7 +1126,7 @@ layers {
     bottom: "sky_sig"
     top: "sig_concat"
     concat_param {
-        axis: 0
+        axis: 1
     }
 }
 
