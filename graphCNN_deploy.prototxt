@@ -215,7 +215,7 @@ layers {
     top: "windmill"
     top: "yard"
     slice_param {
-        axis: 1
+        axis: 3
         slice_point: 1
         slice_point: 2
         slice_point: 3

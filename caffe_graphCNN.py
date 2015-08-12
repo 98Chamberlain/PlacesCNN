@@ -8,7 +8,7 @@ import scipy.io as sio
 import h5py
 
 MODEL_FILE = './graphCNN_deploy.prototxt'
-PRETRAINED = './_iter_10000.caffemodel'
+PRETRAINED = './graphCNN_iter_30000.caffemodel'
 
 caffe.set_device(0)
 caffe.set_mode_gpu()
@@ -20,13 +20,18 @@ dataset = file['/data']
 # dataset = dataset[1,:]
 # file.close()
 
+# print dataset[1,:]
+
 # da = [[]]
-# for i in range(28):
-    
-dataset_t = dataset[1 ,:]
-net.blobs['data'].data[...] = dataset_t
-out = net.forward()
-# print out['fc1']
-h5f = h5py.File( './h5file/h5_file_test.h5','w')
-h5f.create_dataset('40',out['fc1'])
-h5f.close()
+
+for i in range(4872):
+
+    dataset_t = dataset[i ,:]
+    net.blobs['data'].data[...] = dataset_t
+    out = net.forward()
+    d = out['fc1']
+    # print d[0]
+
+    h5f = h5py.File( os.path.join('./h5file/',"h5_file_"+str(i)+".h5"),'w')
+    h5f.create_dataset('data',data=d[0])
+    h5f.close()
