@@ -16,9 +16,19 @@ layers {
 }
 
 layers {
+    name: "fc2"
+    type: INNER_PRODUCT
+    bottom: "data"
+    top: "fc2"
+    inner_product_param {
+        num_output: 205
+    }
+}
+
+layers {
     name: "slicer"
     type: SLICE
-    bottom: "fc"
+    bottom: "fc2"
     top: "abbey"
     top: "airport_terminal"
     top: "alley"
