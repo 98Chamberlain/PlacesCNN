@@ -6,9 +6,19 @@ input_dim: 1
 input_dim: 205
 
 layers {
+    name: "fc"
+    type: INNER_PRODUCT
+    bottom: "data"
+    top: "fc"
+    inner_product_param {
+        num_output: 205
+    }
+}
+
+layers {
     name: "slicer"
     type: SLICE
-    bottom: "data"
+    bottom: "fc"
     top: "abbey"
     top: "airport_terminal"
     top: "alley"
