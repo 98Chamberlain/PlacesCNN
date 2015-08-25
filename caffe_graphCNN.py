@@ -8,7 +8,7 @@ import scipy.io as sio
 import h5py
 
 MODEL_FILE = './graphCNN_deploy.prototxt'
-PRETRAINED = './graphCNN_iter_30000.caffemodel'
+PRETRAINED = './_iter_30000.caffemodel'
 
 caffe.set_device(0)
 caffe.set_mode_gpu()
