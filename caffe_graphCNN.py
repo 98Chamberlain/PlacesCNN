@@ -27,7 +27,9 @@ dataset = file['/data']
 # for i in range(4872):
 for i in range(10):
 
+    i = i*28
     dataset_t = dataset[i ,:]
+    print dataset_t
     net.blobs['data'].data[...] = dataset_t
     out = net.forward()
     d = out['fc1']

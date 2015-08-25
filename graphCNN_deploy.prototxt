@@ -6,29 +6,9 @@ input_dim: 1
 input_dim: 205
 
 layers {
-    name: "fc"
-    type: INNER_PRODUCT
-    bottom: "data"
-    top: "fc"
-    inner_product_param {
-        num_output: 205
-    }
-}
-
-layers {
-    name: "fc2"
-    type: INNER_PRODUCT
-    bottom: "fc"
-    top: "fc2"
-    inner_product_param {
-        num_output: 205
-    }
-}
-
-layers {
     name: "slicer"
     type: SLICE
-    bottom: "fc2"
+    bottom: "data"
     top: "abbey"
     top: "airport_terminal"
     top: "alley"
@@ -235,7 +215,7 @@ layers {
     top: "windmill"
     top: "yard"
     slice_param {
-        axis: 1
+        axis: 3
         slice_point: 1
         slice_point: 2
         slice_point: 3
