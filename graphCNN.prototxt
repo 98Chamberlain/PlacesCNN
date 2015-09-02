@@ -24,9 +24,19 @@ layers {
 }
 
 layers {
+	name: "first_fc"
+	type: INNER_PRODUCT
+	bottom: "data"
+	top: "data_fc"
+	inner_product_param {
+	num_output: 205
+	}
+}
+
+layers {
     name: "slicer"
     type: SLICE
-    bottom: "data"
+    bottom: "data_fc"
     top: "abbey"
     top: "airport_terminal"
     top: "alley"
@@ -533,6 +543,66 @@ layers {
 }
 
 layers {
+	name: "bedroom"
+	type: INNER_PRODUCT
+	bottom: "bedroom"
+	top: "bedroom"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "attic"
+	type: INNER_PRODUCT
+	bottom: "attic"
+	top: "attic"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "basement"
+	type: INNER_PRODUCT
+	bottom: "basement"
+	top: "basement"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "closet"
+	type: INNER_PRODUCT
+	bottom: "closet"
+	top: "closet"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "game_room"
+	type: INNER_PRODUCT
+	bottom: "game_room"
+	top: "game_room"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "home_office"
+	type: INNER_PRODUCT
+	bottom: "home_office"
+	top: "home_office"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
     name: "home_con"
     type: CONCAT
     bottom: "bedroom"
@@ -558,6 +628,46 @@ layers {
 }
 
 layers {
+	name: "conference_room"
+	type: INNER_PRODUCT
+	bottom: "conference_room"
+	top: "conference_room"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "office"
+	type: INNER_PRODUCT
+	bottom: "office"
+	top: "office"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "conference_center"
+	type: INNER_PRODUCT
+	bottom: "conference_center"
+	top: "conference_center"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "waiting_room"
+	type: INNER_PRODUCT
+	bottom: "waiting_room"
+	top: "waiting_room"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
     name: "workplace_con"
     type: CONCAT
     bottom: "conference_room"
@@ -576,6 +686,146 @@ layers {
     inner_product_param {
 	num_output: 1
     }
+}
+
+layers {
+	name: "supermarket"
+	type: INNER_PRODUCT
+	bottom: "supermarket"
+	top: "supermarket"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "bakery_shop"
+	type: INNER_PRODUCT
+	bottom: "bakery_shop"
+	top: "bakery_shop"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "bar"
+	type: INNER_PRODUCT
+	bottom: "bar"
+	top: "bar"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "beauty_salon"
+	type: INNER_PRODUCT
+	bottom: "beauty_salon"
+	top: "beauty_salon"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "bookstore"
+	type: INNER_PRODUCT
+	bottom: "bookstore"
+	top: "bookstore"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "butchers_shop"
+	type: INNER_PRODUCT
+	bottom: "butchers_shop"
+	top: "butchers_shop"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "cafeteria"
+	type: INNER_PRODUCT
+	bottom: "cafeteria"
+	top: "cafeteria"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "candy_store"
+	type: INNER_PRODUCT
+	bottom: "candy_store"
+	top: "candy_store"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "clothing_store"
+	type: INNER_PRODUCT
+	bottom: "clothing_store"
+	top: "clothing_store"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "food_court"
+	type: INNER_PRODUCT
+	bottom: "food_court"
+	top: "food_court"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "gift_shop"
+	type: INNER_PRODUCT
+	bottom: "gift_shop"
+	top: "gift_shop"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "pantry"
+	type: INNER_PRODUCT
+	bottom: "pantry"
+	top: "pantry"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "shoe_shop"
+	type: INNER_PRODUCT
+	bottom: "shoe_shop"
+	top: "shoe_shop"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "shopfront"
+	type: INNER_PRODUCT
+	bottom: "shopfront"
+	top: "shopfront"
+	inner_product_param {
+	num_output: 1
+	}
 }
 
 layers {
@@ -608,6 +858,266 @@ layers {
     inner_product_param {
 	num_output: 1
     }
+}
+
+layers {
+	name: "aquarium"
+	type: INNER_PRODUCT
+	bottom: "aquarium"
+	top: "aquarium"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "art_gallery"
+	type: INNER_PRODUCT
+	bottom: "art_gallery"
+	top: "art_gallery"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "art_studio"
+	type: INNER_PRODUCT
+	bottom: "art_studio"
+	top: "art_studio"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "auditorium"
+	type: INNER_PRODUCT
+	bottom: "auditorium"
+	top: "auditorium"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "ballroom"
+	type: INNER_PRODUCT
+	bottom: "ballroom"
+	top: "ballroom"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "banquet_hall"
+	type: INNER_PRODUCT
+	bottom: "banquet_hall"
+	top: "banquet_hall"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "bus_interior"
+	type: INNER_PRODUCT
+	bottom: "bus_interior"
+	top: "bus_interior"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "cockpit"
+	type: INNER_PRODUCT
+	bottom: "cockpit"
+	top: "cockpit"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "corridor"
+	type: INNER_PRODUCT
+	bottom: "corridor"
+	top: "corridor"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "dorm_room"
+	type: INNER_PRODUCT
+	bottom: "dorm_room"
+	top: "dorm_room"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "hospital_room"
+	type: INNER_PRODUCT
+	bottom: "hospital_room"
+	top: "hospital_room"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "hotel_room"
+	type: INNER_PRODUCT
+	bottom: "hotel_room"
+	top: "hotel_room"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "jail_cell"
+	type: INNER_PRODUCT
+	bottom: "jail_cell"
+	top: "jail_cell"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "laundromat"
+	type: INNER_PRODUCT
+	bottom: "laundromat"
+	top: "laundromat"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "lobby"
+	type: INNER_PRODUCT
+	bottom: "lobby"
+	top: "lobby"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "locker_room"
+	type: INNER_PRODUCT
+	bottom: "locker_room"
+	top: "locker_room"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "museum"
+	type: INNER_PRODUCT
+	bottom: "museum"
+	top: "museum"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "music_studio"
+	type: INNER_PRODUCT
+	bottom: "music_studio"
+	top: "music_studio"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "nursery"
+	type: INNER_PRODUCT
+	bottom: "nursery"
+	top: "nursery"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "reception"
+	type: INNER_PRODUCT
+	bottom: "reception"
+	top: "reception"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "restaurant_patio"
+	type: INNER_PRODUCT
+	bottom: "restaurant_patio"
+	top: "restaurant_patio"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "shower"
+	type: INNER_PRODUCT
+	bottom: "shower"
+	top: "shower"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "stage"
+	type: INNER_PRODUCT
+	bottom: "stage"
+	top: "stage"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "staircase"
+	type: INNER_PRODUCT
+	bottom: "staircase"
+	top: "staircase"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "subway_station"
+	type: INNER_PRODUCT
+	bottom: "subway_station"
+	top: "subway_station"
+	inner_product_param {
+	num_output: 1
+	}
+}
+
+layers {
+	name: "television_studio"
+	type: INNER_PRODUCT
+	bottom: "television_studio"
+	top: "television_studio"
+	inner_product_param {
+	num_output: 1
+	}
 }
 
 layers {
