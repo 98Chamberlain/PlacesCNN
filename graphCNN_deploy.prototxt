@@ -1740,280 +1740,280 @@ layers {
 
 layers {
 	name: "root_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "root_s"
 	top: "root_th"
 }
 
 layers {
 	name: "indoor_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "indoor_s"
 	top: "indoor_th"
 }
 
 layers {
 	name: "outdoor_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "outdoor_s"
 	top: "outdoor_th"
 }
 
 layers {
 	name: "landscape_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "landscape_s"
 	top: "landscape_th"
 }
 
 layers {
 	name: "sports_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "sports_s"
 	top: "sports_th"
 }
 
 layers {
 	name: "home_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "home_s"
 	top: "home_th"
 }
 
 layers {
 	name: "workplace_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "workplace_s"
 	top: "workplace_th"
 }
 
 layers {
 	name: "store_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "store_s"
 	top: "store_th"
 }
 
 layers {
 	name: "industrial_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "industrial_s"
 	top: "industrial_th"
 }
 
 layers {
 	name: "architecture_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "architecture_s"
 	top: "architecture_th"
 }
 
 layers {
 	name: "plants_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "plants_s"
 	top: "plants_th"
 }
 
 layers {
 	name: "water_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "water_s"
 	top: "water_th"
 }
 
 layers {
 	name: "bedroom_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "bedroom_s"
 	top: "bedroom_th"
 }
 
 layers {
 	name: "dining_room_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "dining_room_s"
 	top: "dining_room_th"
 }
 
 layers {
 	name: "living_room_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "living_room_s"
 	top: "living_room_th"
 }
 
 layers {
 	name: "kitchen_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "kitchen_s"
 	top: "kitchen_th"
 }
 
 layers {
 	name: "conference_room_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "conference_room_s"
 	top: "conference_room_th"
 }
 
 layers {
 	name: "office_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "office_s"
 	top: "office_th"
 }
 
 layers {
 	name: "restaurant_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "restaurant_s"
 	top: "restaurant_th"
 }
 
 layers {
 	name: "supermarket_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "supermarket_s"
 	top: "supermarket_th"
 }
 
 layers {
 	name: "aquarium_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "aquarium_s"
 	top: "aquarium_th"
 }
 
 layers {
 	name: "classroom_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "classroom_s"
 	top: "classroom_th"
 }
 
 layers {
 	name: "church_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "church_s"
 	top: "church_th"
 }
 
 layers {
 	name: "bridge_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "bridge_s"
 	top: "bridge_th"
 }
 
 layers {
 	name: "skyscraper_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "skyscraper_s"
 	top: "skyscraper_th"
 }
 
 layers {
 	name: "amusement_park_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "amusement_park_s"
 	top: "amusement_park_th"
 }
 
 layers {
 	name: "playground_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "playground_s"
 	top: "playground_th"
 }
 
 layers {
 	name: "street_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "street_s"
 	top: "street_th"
 }
 
 layers {
 	name: "forest_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "forest_s"
 	top: "forest_th"
 }
 
 layers {
 	name: "garden_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "garden_s"
 	top: "garden_th"
 }
 
 layers {
 	name: "coast_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "coast_s"
 	top: "coast_th"
 }
 
 layers {
 	name: "pond_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "pond_s"
 	top: "pond_th"
 }
 
 layers {
 	name: "river_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "river_s"
 	top: "river_th"
 }
 
 layers {
 	name: "swimming_pool_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "swimming_pool_s"
 	top: "swimming_pool_th"
 }
 
 layers {
 	name: "ocean_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "ocean_s"
 	top: "ocean_th"
 }
 
 layers {
 	name: "canyon_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "canyon_s"
 	top: "canyon_th"
 }
 
 layers {
 	name: "desert_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "desert_s"
 	top: "desert_th"
 }
 
 layers {
 	name: "ice_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "ice_s"
 	top: "ice_th"
 }
 
 layers {
 	name: "mountain_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "mountain_s"
 	top: "mountain_th"
 }
 
 layers {
 	name: "sky_th"
-	type: THRESHOLD
+	type: SIGMOID
 	bottom: "sky_s"
 	top: "sky_th"
 }
