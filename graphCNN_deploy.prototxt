@@ -1649,3 +1649,420 @@ layers {
         num_output: 40
     }
 }
+
+layers {
+    name: "slicer"
+    type: SLICE
+    bottom: "fc1"
+    top: "root_s"
+    top: "indoor_s"
+    top: "outdoor_s"
+    top: "landscape_s"
+    top: "sports_s"
+    top: "home_s"
+    top: "workplace_s"
+    top: "store_s"
+    top: "industrial_s"
+    top: "architecture_s"
+    top: "plants_s"
+    top: "water_s"
+    top: "bedroom_s"
+    top: "dining_room_s"
+    top: "living_room_s"
+    top: "kitchen_s"
+    top: "conference_room_s"
+    top: "office_s"
+    top: "restaurant_s"
+    top: "supermarket_s"
+    top: "aquarium_s"
+    top: "classroom_s"
+    top: "church_s"
+    top: "bridge_s"
+    top: "skyscraper_s"
+    top: "amusement_park_s"
+    top: "playground_s"
+    top: "street_s"
+    top: "forest_s"
+    top: "garden_s"
+    top: "coast_s"
+    top: "pond_s"
+    top: "river_s"
+    top: "swimming_pool_s"
+    top: "ocean_s"
+    top: "canyon_s"
+    top: "desert_s"
+    top: "ice_s"
+    top: "mountain_s"
+    top: "sky_s"
+	slice_param {
+        axis: 1
+        slice_point: 1
+        slice_point: 2
+        slice_point: 3
+        slice_point: 4
+        slice_point: 5
+        slice_point: 6
+        slice_point: 7
+        slice_point: 8
+        slice_point: 9
+        slice_point: 10
+        slice_point: 11
+        slice_point: 12
+        slice_point: 13
+        slice_point: 14
+        slice_point: 15
+        slice_point: 16
+        slice_point: 17
+        slice_point: 18
+        slice_point: 19
+        slice_point: 20
+        slice_point: 21
+        slice_point: 22
+        slice_point: 23
+        slice_point: 24
+        slice_point: 25
+        slice_point: 26
+        slice_point: 27
+        slice_point: 28
+        slice_point: 29
+        slice_point: 30
+        slice_point: 31
+        slice_point: 32
+        slice_point: 33
+        slice_point: 34
+        slice_point: 35
+        slice_point: 36
+        slice_point: 37
+        slice_point: 38
+        slice_point: 39
+	}
+}
+
+layers {
+	name: "root_th"
+	type: THRESHOLD
+	bottom: "root_s"
+	top: "root_th"
+}
+
+layers {
+	name: "indoor_th"
+	type: THRESHOLD
+	bottom: "indoor_s"
+	top: "indoor_th"
+}
+
+layers {
+	name: "outdoor_th"
+	type: THRESHOLD
+	bottom: "outdoor_s"
+	top: "outdoor_th"
+}
+
+layers {
+	name: "landscape_th"
+	type: THRESHOLD
+	bottom: "landscape_s"
+	top: "landscape_th"
+}
+
+layers {
+	name: "sports_th"
+	type: THRESHOLD
+	bottom: "sports_s"
+	top: "sports_th"
+}
+
+layers {
+	name: "home_th"
+	type: THRESHOLD
+	bottom: "home_s"
+	top: "home_th"
+}
+
+layers {
+	name: "workplace_th"
+	type: THRESHOLD
+	bottom: "workplace_s"
+	top: "workplace_th"
+}
+
+layers {
+	name: "store_th"
+	type: THRESHOLD
+	bottom: "store_s"
+	top: "store_th"
+}
+
+layers {
+	name: "industrial_th"
+	type: THRESHOLD
+	bottom: "industrial_s"
+	top: "industrial_th"
+}
+
+layers {
+	name: "architecture_th"
+	type: THRESHOLD
+	bottom: "architecture_s"
+	top: "architecture_th"
+}
+
+layers {
+	name: "plants_th"
+	type: THRESHOLD
+	bottom: "plants_s"
+	top: "plants_th"
+}
+
+layers {
+	name: "water_th"
+	type: THRESHOLD
+	bottom: "water_s"
+	top: "water_th"
+}
+
+layers {
+	name: "bedroom_th"
+	type: THRESHOLD
+	bottom: "bedroom_s"
+	top: "bedroom_th"
+}
+
+layers {
+	name: "dining_room_th"
+	type: THRESHOLD
+	bottom: "dining_room_s"
+	top: "dining_room_th"
+}
+
+layers {
+	name: "living_room_th"
+	type: THRESHOLD
+	bottom: "living_room_s"
+	top: "living_room_th"
+}
+
+layers {
+	name: "kitchen_th"
+	type: THRESHOLD
+	bottom: "kitchen_s"
+	top: "kitchen_th"
+}
+
+layers {
+	name: "conference_room_th"
+	type: THRESHOLD
+	bottom: "conference_room_s"
+	top: "conference_room_th"
+}
+
+layers {
+	name: "office_th"
+	type: THRESHOLD
+	bottom: "office_s"
+	top: "office_th"
+}
+
+layers {
+	name: "restaurant_th"
+	type: THRESHOLD
+	bottom: "restaurant_s"
+	top: "restaurant_th"
+}
+
+layers {
+	name: "supermarket_th"
+	type: THRESHOLD
+	bottom: "supermarket_s"
+	top: "supermarket_th"
+}
+
+layers {
+	name: "aquarium_th"
+	type: THRESHOLD
+	bottom: "aquarium_s"
+	top: "aquarium_th"
+}
+
+layers {
+	name: "classroom_th"
+	type: THRESHOLD
+	bottom: "classroom_s"
+	top: "classroom_th"
+}
+
+layers {
+	name: "church_th"
+	type: THRESHOLD
+	bottom: "church_s"
+	top: "church_th"
+}
+
+layers {
+	name: "bridge_th"
+	type: THRESHOLD
+	bottom: "bridge_s"
+	top: "bridge_th"
+}
+
+layers {
+	name: "skyscraper_th"
+	type: THRESHOLD
+	bottom: "skyscraper_s"
+	top: "skyscraper_th"
+}
+
+layers {
+	name: "amusement_park_th"
+	type: THRESHOLD
+	bottom: "amusement_park_s"
+	top: "amusement_park_th"
+}
+
+layers {
+	name: "playground_th"
+	type: THRESHOLD
+	bottom: "playground_s"
+	top: "playground_th"
+}
+
+layers {
+	name: "street_th"
+	type: THRESHOLD
+	bottom: "street_s"
+	top: "street_th"
+}
+
+layers {
+	name: "forest_th"
+	type: THRESHOLD
+	bottom: "forest_s"
+	top: "forest_th"
+}
+
+layers {
+	name: "garden_th"
+	type: THRESHOLD
+	bottom: "garden_s"
+	top: "garden_th"
+}
+
+layers {
+	name: "coast_th"
+	type: THRESHOLD
+	bottom: "coast_s"
+	top: "coast_th"
+}
+
+layers {
+	name: "pond_th"
+	type: THRESHOLD
+	bottom: "pond_s"
+	top: "pond_th"
+}
+
+layers {
+	name: "river_th"
+	type: THRESHOLD
+	bottom: "river_s"
+	top: "river_th"
+}
+
+layers {
+	name: "swimming_pool_th"
+	type: THRESHOLD
+	bottom: "swimming_pool_s"
+	top: "swimming_pool_th"
+}
+
+layers {
+	name: "ocean_th"
+	type: THRESHOLD
+	bottom: "ocean_s"
+	top: "ocean_th"
+}
+
+layers {
+	name: "canyon_th"
+	type: THRESHOLD
+	bottom: "canyon_s"
+	top: "canyon_th"
+}
+
+layers {
+	name: "desert_th"
+	type: THRESHOLD
+	bottom: "desert_s"
+	top: "desert_th"
+}
+
+layers {
+	name: "ice_th"
+	type: THRESHOLD
+	bottom: "ice_s"
+	top: "ice_th"
+}
+
+layers {
+	name: "mountain_th"
+	type: THRESHOLD
+	bottom: "mountain_s"
+	top: "mountain_th"
+}
+
+layers {
+	name: "sky_th"
+	type: THRESHOLD
+	bottom: "sky_s"
+	top: "sky_th"
+}
+
+layers {
+    name: "th_concat"
+    type: CONCAT
+    bottom: "root_th"
+    bottom: "indoor_th"
+    bottom: "outdoor_th"
+    bottom: "landscape_th"
+    bottom: "sports_th"
+    bottom: "home_th"
+    bottom: "workplace_th"
+    bottom: "store_th"
+    bottom: "industrial_th"
+    bottom: "architecture_th"
+    bottom: "plants_th"
+    bottom: "water_th"
+    bottom: "bedroom_th"
+    bottom: "dining_room_th"
+    bottom: "living_room_th"
+    bottom: "kitchen_th"
+    bottom: "conference_room_th"
+    bottom: "office_th"
+    bottom: "restaurant_th"
+    bottom: "supermarket_th"
+    bottom: "aquarium_th"
+    bottom: "classroom_th"
+    bottom: "church_th"
+    bottom: "bridge_th"
+    bottom: "skyscraper_th"
+    bottom: "amusement_park_th"
+    bottom: "playground_th"
+    bottom: "street_th"
+    bottom: "forest_th"
+    bottom: "garden_th"
+    bottom: "coast_th"
+    bottom: "pond_th"
+    bottom: "river_th"
+    bottom: "swimming_pool_th"
+    bottom: "ocean_th"
+    bottom: "canyon_th"
+    bottom: "desert_th"
+    bottom: "ice_th"
+    bottom: "mountain_th"
+    bottom: "sky_th"
+    top: "th_concat"
+    concat_param {
+        axis: 1
+    }
+}
