@@ -35,27 +35,27 @@ root_s = [1,2,3,5:1:22,24,25,26,28:1:38,40:1:49,51:1:63,65,66,...
 train_amt = 100;
 
 % training data
-tr_prob = prob_data(:,1:train_amt,root_s);
+tr_prob = fc8_data(:,1:train_amt,root_s);
 tr_prob = tr_prob(:,:);
 gt_tmp = gt(root_s,:);
 for i = 1:174
     tr_gt(:,(i-1)*100+1:i*100) = repmat(gt_tmp(i,:),[train_amt,1])'; % 40*17400 -> 17400*40
 end
 
-hdf5write('graphCNNtraining.h5','/data',tr_prob,'/label',tr_gt);
+hdf5write('graphCNNtraining_fc8.h5','/data',tr_prob,'/label',tr_gt);
 tr_gt_neg = tr_gt;
 tr_gt_neg(find(tr_gt_neg==0))=-1;
-hdf5write('graphCNNtraining_neg.h5','/data',tr_prob,'/label',tr_gt_neg);
+hdf5write('graphCNNtraining_fc8_neg.h5','/data',tr_prob,'/label',tr_gt_neg);
 
 % testing data
-te_prob = prob_data(:,train_amt+1:128,root_s);
+te_prob = fc8_data(:,train_amt+1:128,root_s);
 te_prob = te_prob(:,:);
 for i = 1:174
     te_gt(:,(i-1)*28+1:i*28) = repmat(gt_tmp(i,:),[28,1])';
 end
 
-hdf5write('graphCNNtesting.h5','/data',te_prob,'/label',te_gt);
+hdf5write('graphCNNtesting_fc8.h5','/data',te_prob,'/label',te_gt);
 te_gt_neg = te_gt;
 te_gt_neg(find(te_gt_neg==0))=-1;
-hdf5write('graphCNNtraining_neg.h5','/data',te_prob,'/label',te_gt_neg);
+hdf5write('graphCNNtesting_fc8_neg.h5','/data',te_prob,'/label',te_gt_neg);
 

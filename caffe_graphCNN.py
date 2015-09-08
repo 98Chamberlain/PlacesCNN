@@ -8,7 +8,7 @@ import scipy.io as sio
 import h5py
 
 MODEL_FILE = './graphCNN_deploy.prototxt'
-PRETRAINED = './_iter_7000.caffemodel'
+PRETRAINED = './_iter_30000.caffemodel'
 
 caffe.set_device(0)
 caffe.set_mode_gpu()
@@ -24,10 +24,10 @@ dataset = file['/data']
 
 # da = [[]]
 
-# for i in range(4872):
-for i in range(10):
+for i in range(4872):
+# for i in range(10):
 
-    i = i*28
+#     i = i*28
     dataset_t = dataset[i ,:]
     # print dataset_t
     net.blobs['data'].data[...] = dataset_t
