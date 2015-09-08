@@ -8,7 +8,7 @@ import scipy.io as sio
 import h5py
 
 MODEL_FILE = './graphCNN_deploy.prototxt'
-PRETRAINED = './sigmoidcross_iter_10000.caffemodel'
+PRETRAINED = './_iter_7000.caffemodel'
 
 caffe.set_device(0)
 caffe.set_mode_gpu()
@@ -32,9 +32,9 @@ for i in range(10):
     # print dataset_t
     net.blobs['data'].data[...] = dataset_t
     out = net.forward()
-    d = out['fc1']
+    d = out['th_concat']
     # print d[0]
 
-    h5f = h5py.File( os.path.join('./h5file/',"h5_file_"+str(i)+".h5"),'w')
+    h5f = h5py.File( os.path.join('./h5file_t/',"h5_file_"+str(i)+".h5"),'w')
     h5f.create_dataset('data',data=d[0])
     h5f.close()

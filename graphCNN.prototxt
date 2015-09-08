@@ -131,20 +131,414 @@ layers {
 	}
 }
 
+layers {
+    name: "label_slicer"
+    type: SLICE
+    bottom: "label"
+    top: "root_l"
+    top: "indoor_l"
+    top: "outdoor_l"
+    top: "landscape_l"
+    top: "sports_l"
+    top: "home_l"
+    top: "workplace_l"
+    top: "store_l"
+    top: "industrial_l"
+    top: "architecture_l"
+    top: "plants_l"
+    top: "water_l"
+    top: "bedroom_l"
+    top: "dining_room_l"
+    top: "living_room_l"
+    top: "kitchen_l"
+    top: "conference_room_l"
+    top: "office_l"
+    top: "restaurant_l"
+    top: "supermarket_l"
+    top: "aquarium_l"
+    top: "classroom_l"
+    top: "church_l"
+    top: "bridge_l"
+    top: "skyscraper_l"
+    top: "amusement_park_l"
+    top: "playground_l"
+    top: "street_l"
+    top: "forest_l"
+    top: "garden_l"
+    top: "coast_l"
+    top: "pond_l"
+    top: "river_l"
+    top: "swimming_pool_l"
+    top: "ocean_l"
+    top: "canyon_l"
+    top: "desert_l"
+    top: "ice_l"
+    top: "mountain_l"
+    top: "sky_l"
+	slice_param {
+        axis: 1
+        slice_point: 1
+        slice_point: 2
+        slice_point: 3
+        slice_point: 4
+        slice_point: 5
+        slice_point: 6
+        slice_point: 7
+        slice_point: 8
+        slice_point: 9
+        slice_point: 10
+        slice_point: 11
+        slice_point: 12
+        slice_point: 13
+        slice_point: 14
+        slice_point: 15
+        slice_point: 16
+        slice_point: 17
+        slice_point: 18
+        slice_point: 19
+        slice_point: 20
+        slice_point: 21
+        slice_point: 22
+        slice_point: 23
+        slice_point: 24
+        slice_point: 25
+        slice_point: 26
+        slice_point: 27
+        slice_point: 28
+        slice_point: 29
+        slice_point: 30
+        slice_point: 31
+        slice_point: 32
+        slice_point: 33
+        slice_point: 34
+        slice_point: 35
+        slice_point: 36
+        slice_point: 37
+        slice_point: 38
+        slice_point: 39
+	}
+}
+    
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "root_s"
+    bottom: "root_l"
+    top: "loss0"
+    loss_weight: 1
+}
 
 layers {
     name: "loss"
-    type: EUCLIDEAN_LOSS
-    bottom: "data_fc2"
-    bottom: "label"
-    top: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "indoor_s"
+    bottom: "indoor_l"
+    top: "loss1"
+    loss_weight: 5
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "outdoor_s"
+    bottom: "outdoor_l"
+    top: "loss2"
+    loss_weight: 5
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "landscape_s"
+    bottom: "landscape_l"
+    top: "loss3"
+    loss_weight: 5
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "sports_s"
+    bottom: "sports_l"
+    top: "loss4"
+    loss_weight: 5
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "home_s"
+    bottom: "home_l"
+    top: "loss5"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "workplace_s"
+    bottom: "workplace_l"
+    top: "loss6"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "store_s"
+    bottom: "store_l"
+    top: "loss7"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "industrial_s"
+    bottom: "industrial_l"
+    top: "loss8"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "architecture_s"
+    bottom: "architecture_l"
+    top: "loss9"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "plants_s"
+    bottom: "plants_l"
+    top: "loss10"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "water_s"
+    bottom: "water_l"
+    top: "loss11"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "bedroom_s"
+    bottom: "bedroom_l"
+    top: "loss12"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "dining_room_s"
+    bottom: "dining_room_l"
+    top: "loss13"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "living_room_s"
+    bottom: "living_room_l"
+    top: "loss14"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "kitchen_s"
+    bottom: "kitchen_l"
+    top: "loss15"
+    loss_weight: 10
+}
+
+layers {
+    name: "loss"
+    type: SOFTMAX_LOSS
+    bottom: "conference_room_s"
+    bottom: "conference_room_l"
+    top: "loss16"
+    loss_weight: 10
 }
 
 layers {
     name: "accuracy"
-    type: EUCLIDEAN_LOSS
-    bottom: "data_fc2"
-    bottom: "label"
-    top: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "root_s"
+    bottom: "root_l"
+    top: "accuracy0"
+    loss_weight: 1
     include: {phase: TEST}
 }
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "indoor_s"
+    bottom: "indoor_l"
+    top: "accuracy1"
+    loss_weight: 5
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "outdoor_s"
+    bottom: "outdoor_l"
+    top: "accuracy2"
+    loss_weight: 5
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "landscape_s"
+    bottom: "landscape_l"
+    top: "accuracy3"
+    loss_weight: 5
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "sports_s"
+    bottom: "sports_l"
+    top: "accuracy4"
+    loss_weight: 5
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "home_s"
+    bottom: "home_l"
+    top: "accuracy5"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "workplace_s"
+    bottom: "workplace_l"
+    top: "accuracy6"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "store_s"
+    bottom: "store_l"
+    top: "accuracy7"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "industrial_s"
+    bottom: "industrial_l"
+    top: "accuracy8"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "architecture_s"
+    bottom: "architecture_l"
+    top: "accuracy9"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "plants_s"
+    bottom: "plants_l"
+    top: "accuracy10"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "water_s"
+    bottom: "water_l"
+    top: "accuracy11"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "bedroom_s"
+    bottom: "bedroom_l"
+    top: "accuracy12"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "dining_room_s"
+    bottom: "dining_room_l"
+    top: "accuracy13"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "living_room_s"
+    bottom: "living_room_l"
+    top: "accuracy14"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "kitchen_s"
+    bottom: "kitchen_l"
+    top: "accuracy15"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
+layers {
+    name: "accuracy"
+    type: SOFTMAX_LOSS
+    bottom: "conference_room_s"
+    bottom: "conference_room_l"
+    top: "accuracy16"
+    loss_weight: 10
+    include: {phase: TEST}
+}
+
