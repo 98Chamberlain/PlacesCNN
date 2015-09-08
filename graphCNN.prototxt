@@ -2096,7 +2096,7 @@ layers {
 layers {
     name: "accuracy"
     type: EUCLIDEAN_LOSS
-    bottom: "fc1"
+    bottom: "th_concat"
     bottom: "label"
     top: "accuracy"
     include: {phase: TEST}
