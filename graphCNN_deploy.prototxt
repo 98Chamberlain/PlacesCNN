@@ -1,9 +1,9 @@
 name: "graphCNN"
 input: "data"
 input_dim: 64
+input_dim: 1
+input_dim: 1
 input_dim: 205
-input_dim: 1
-input_dim: 1
 
 layers {
 	name: "first_fc"

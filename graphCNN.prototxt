@@ -1670,7 +1670,7 @@ layers {
 
 layers {
     name: "loss"
-    type: EUCLIDEAN_LOSS
+    type: SIGMOID_CROSS_ENTROPY_LOSS
     bottom: "fc1"
     bottom: "label"
     top: "loss"
@@ -1678,7 +1678,7 @@ layers {
 
 layers {
     name: "accuracy"
-    type: EUCLIDEAN_LOSS
+    type: SIGMOID_CROSS_ENTROPY_LOSS
     bottom: "fc1"
     bottom: "label"
     top: "accuracy"
