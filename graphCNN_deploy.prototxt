@@ -16,9 +16,16 @@ layers {
 }
 
 layers {
+    name: "first_reLU"
+    type: RELU
+    bottom: "data_fc"
+    top: "data_relu"
+}
+
+layers {
 	name: "second_fc"
 	type: INNER_PRODUCT
-	bottom: "data_fc"
+	bottom: "data_relu"
 	top: "data_fc2"
 	inner_product_param {
 	num_output: 205
@@ -26,11 +33,25 @@ layers {
 }
 
 layers {
+    name: "second_reLU"
+    type: RELU
+    bottom: "data_fc2"
+    top: "data_relu2"
+}
+
+layers {
 	name: "third_fc"
 	type: INNER_PRODUCT
-	bottom: "data_fc2"
+	bottom: "data_relu2"
 	top: "data_fc3"
 	inner_product_param {
 	num_output: 45
 	}
+}
+
+layers {
+	name: "softmax"
+	type: SOFTMAX
+	bottom: "data_fc3"
+	top: "data_softmax"
 }

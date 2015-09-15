@@ -11,7 +11,7 @@ MODEL_FILE = 'places205CNN_deploy.prototxt'
 PRETRAINED =  'places205CNN_iter_300000.caffemodel'
 
 
-path = "../../Hitachi/Places205_resize/images256/"
+path = "/media/ponu/DATA/Places205_resize/images256/"
 alphabet = os.listdir( path )
 path_out = "../images256_h5/"
 path_fc8 = "../images256_fc8_h5/"
@@ -43,7 +43,7 @@ def feed_forward( imageset_org , num , im_path , im_path_out , im_path_fc8):
         h5name = os.path.splitext(os.path.basename(file))[0]+'.h5'
         hn = os.path.join(im_path_out , h5name)
         h5f = h5py.File( hn , 'w' )
-        h5f.create_dataset('dataset_1',data=prediction[0])
+        h5f.create_dataset('prob',data=prediction[0])
         h5f.close()
 
         fc8 = os.path.join(im_path_fc8 , h5name)
