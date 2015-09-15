@@ -65,6 +65,8 @@ target/
 
 # data file
 *.h5
+*.csv
+*.mat
 
 # Windows default autosave extension
 *.asv

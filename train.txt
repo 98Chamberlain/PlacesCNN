@@ -1,1 +1,1 @@
-/home/ponu/Documents/PlacesCNN/graphCNNtraining_fc8_neg.h5
+/home/ponu/Documents/PlacesCNN/infogainNNtraining_fc8.h5
