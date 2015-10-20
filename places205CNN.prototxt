@@ -394,7 +394,7 @@ layer {
 }
 
 layer {
-  name: "accuracy"
+  name: "accuracy_finetuned"
   type: "Accuracy"
   bottom: "fc9"
   bottom: "label"
@@ -404,7 +404,7 @@ layer {
   }
 }
 layer {
-  name: "loss"
+  name: "loss_finetuned"
   type: "SoftmaxWithLoss"
   bottom: "fc9"
   bottom: "label"
