@@ -25,7 +25,7 @@ caffe.set_mode_gpu()
 net = caffe.Classifier(MODEL_FILE,
                        PRETRAINED,                                    
                        mean=np.load('mean.npy').mean(1).mean(1),
-		       channel_swap=(2,1,0),
+		               channel_swap=(2,1,0),
                        raw_scale=255,
                        image_dims=(256,256))
 
@@ -66,9 +66,9 @@ for al in alphabet:
                 im_path_fc8_tmp = os.path.join( path_fc8,al,file,sub_f )
                 ensure_dir(im_path_out_tmp)
                 ensure_dir(im_path_fc8_tmp)
-                feed_forward( imageset_org , 128 , im_path_tmp , im_path_out_tmp , im_path_fc8_tmp)
+                feed_forward( imageset_org , 2000 , im_path_tmp , im_path_out_tmp , im_path_fc8_tmp)
         else:
             ensure_dir(im_path_out)
             ensure_dir(im_path_fc8)
-            feed_forward( imageset_org , 128 , im_path , im_path_out , im_path_fc8 )
+            feed_forward( imageset_org , 2000 , im_path , im_path_out , im_path_fc8 )
 
