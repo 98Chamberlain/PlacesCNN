@@ -1,4 +1,4 @@
-net: "/home/ponu/Documents/PlacesCNN/Places205CNN.prototxt"
+net: "/home/ponu/Documents/PlacesCNN/places205CNN.prototxt"
 test_iter: 100
 test_interval: 1000
 base_lr: 0.001

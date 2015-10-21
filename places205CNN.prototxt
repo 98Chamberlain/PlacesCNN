@@ -38,10 +38,13 @@ layer {
   }
 }
 
-layers {
-  layer {
-    name: "conv1"
-    type: "conv"
+layer {
+  name: "conv1"
+  bottom: "data"
+  top: "conv1"
+  type: "conv"
+  
+  inner_product_param {
     num_output: 96
     kernelsize: 11
     stride: 4
@@ -58,25 +61,21 @@ layers {
     weight_decay: 1.
     weight_decay: 0.
   }
-  bottom: "data"
-  top: "conv1"
 }
-layers {
-  layer {
-    name: "relu1"
-    type: "relu"
-  }
+
+layer {
+  name: "relu1"
+  type: "relu"
   bottom: "conv1"
   top: "conv1"
 }
-layers {
-  layer {
-    name: "pool1"
-    type: "pool"
-    pool: MAX
-    kernelsize: 3
-    stride: 2
-  }
+
+layer {
+  name: "pool1"
+  type: "pool"
+  pool: MAX
+  kernelsize: 3
+  stride: 2
   bottom: "conv1"
   top: "pool1"
 }
