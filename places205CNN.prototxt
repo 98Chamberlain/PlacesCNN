@@ -14,7 +14,7 @@ layer {
   }
   data_param {
     source: "/media/ponu/DATA/Places205_resize/images256/train_lmdb"
-    batch_size: 64
+    batch_size: 4
     backend: LMDB
   }
 }
@@ -33,7 +33,7 @@ layer {
   }
   data_param {
     source: "/media/ponu/DATA/Places205_resize/images256/val_lmdb"
-    batch_size: 64
+    batch_size: 4
     backend: LMDB
   }
 }
@@ -262,7 +262,7 @@ layer {
   }
 }
 layer {
-  name: "fc6"
+  name: "fc6_ft"
   type: "InnerProduct"
   bottom: "pool5"
   top: "fc6"
@@ -342,36 +342,10 @@ layer {
   }
 }
 layer {
-  name: "fc8"
+  name: "fc8_ft"
   type: "InnerProduct"
   bottom: "fc7"
   top: "fc8"
-  param {
-    lr_mult: 1
-    decay_mult: 1
-  }
-  param {
-    lr_mult: 2
-    decay_mult: 0
-  }
-  inner_product_param {
-    num_output: 205
-    weight_filler {
-      type: "gaussian"
-      std: 0.01
-    }
-    bias_filler {
-      type: "constant"
-      value: 0
-    }
-  }
-}
-
-layer {
-  name: "fc9"
-  type: "InnerProduct"
-  bottom: "fc8"
-  top: "fc9"
   param {
     lr_mult: 1
     decay_mult: 1
@@ -396,7 +370,7 @@ layer {
 layer {
   name: "accuracy_finetuned"
   type: "Accuracy"
-  bottom: "fc9"
+  bottom: "fc8"
   bottom: "label"
   top: "accuracy"
   include {
@@ -406,7 +380,7 @@ layer {
 layer {
   name: "loss_finetuned"
   type: "SoftmaxWithLoss"
-  bottom: "fc9"
+  bottom: "fc8"
   bottom: "label"
   top: "loss"
 }
