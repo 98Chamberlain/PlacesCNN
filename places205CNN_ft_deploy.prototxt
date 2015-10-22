@@ -336,7 +336,7 @@ layer {
 
 layer {
   name: "prob"
-  type: "softmax"
+  type: "Softmax"
   bottom: "fc8"
   top: "prob"
 }

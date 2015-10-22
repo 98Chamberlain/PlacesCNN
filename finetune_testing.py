@@ -7,7 +7,7 @@ import os
 import scipy.io as sio
 import h5py
 
-path = "/media/ponu/DATA/Places205_resize/images256/"
+path = '/media/ponu/DATA/Places205_resize/images256'
 
 MODEL_FILE = 'places205CNN_ft_deploy.prototxt'
 PRETRAINED =  './finetune_model/_iter_450000.caffemodel'
@@ -15,11 +15,13 @@ MEAN_PATH = os.path.join( path , "ft_mean.npy" )
 
 
 alphabet = os.listdir( path )
-path_out = "../images256_h5/"
+path_out = '../finetune_h5/'
 
 def ensure_dir(d):
     if not os.path.exists(d):
         os.makedirs(d)
+
+ensure_dir( path_out )
 
 # python convert_protomean.py proto.mean out.npy
 if not os.path.exists( MEAN_PATH ):
@@ -42,11 +44,17 @@ net = caffe.Classifier(MODEL_FILE,
 file = open( os.path.join( path , "LMDB_test.txt" ), 'r')
 
 for line in file:
-    test_path = line.split()[0]
-    input_image = caffe.io.load_image(os.path.join( path , test_path ))
+    test_path = line.split()
+    test_path = test_path[0]
+    image_path = path+test_path
+    input_image = caffe.io.load_image( image_path )
     prediction = net.predict([input_image])
     print 'predicted class:', prediction[0].argmax()
-
+    h5name = os.path.splitext(os.path.basename(test_path))[0]+'.h5'
+    h5_path = os.path.join( path_out , h5name )
+    h5f = h5py.File( h5_path , 'w')
+    h5f.create_dataset('prob',data=prediction[0])
+    h5f.close()
 
 def feed_forward( imageset_org , num , im_path , im_path_out , im_path_fc8):
     imageset = [0]*num
