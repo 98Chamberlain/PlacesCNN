@@ -44,17 +44,22 @@ net = caffe.Classifier(MODEL_FILE,
 file = open( os.path.join( path , "LMDB_test.txt" ), 'r')
 
 for line in file:
+    # extract the file name
     test_path = line.split()
     test_path = test_path[0]
-    image_path = path+test_path
-    input_image = caffe.io.load_image( image_path )
-    prediction = net.predict([input_image])
-    print 'predicted class:', prediction[0].argmax()
+    # path of h5 file
     h5name = os.path.splitext(os.path.basename(test_path))[0]+'.h5'
     h5_path = os.path.join( path_out , h5name )
-    h5f = h5py.File( h5_path , 'w')
-    h5f.create_dataset('prob',data=prediction[0])
-    h5f.close()
+    if not os.path.exists( h5_path ):
+        image_path = path+test_path
+        input_image = caffe.io.load_image( image_path )
+        prediction = net.predict([input_image])
+        print 'predicted class:', prediction[0].argmax()
+#    h5name = os.path.splitext(os.path.basename(test_path))[0]+'.h5'
+#    h5_path = os.path.join( path_out , h5name )
+        h5f = h5py.File( h5_path , 'w')
+        h5f.create_dataset('prob',data=prediction[0])
+        h5f.close()
 
 def feed_forward( imageset_org , num , im_path , im_path_out , im_path_fc8):
     imageset = [0]*num
