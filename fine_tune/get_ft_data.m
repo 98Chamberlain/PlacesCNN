@@ -19,8 +19,8 @@ root_s = [1,2,3,5:1:22,24,25,26,28:1:38,40:1:49,51:1:63,65,66,...
     198,199,201,202,205];
 scene_num = length(root_s);
 
-single_gt = zeros(test_amt*scene_num,1);  % single label ground truth
-h5 = cell(test_amt*scene_num,2); % h5 data / correspond places scene number
+single_gt = zeros(round(test_amt*scene_num),1);  % single label ground truth
+h5 = cell(round(test_amt*scene_num),2); % h5 data / correspond places scene number
 
 cnt = 1; % count the number of total test image
 tline = fgetl(file_id);
@@ -32,7 +32,7 @@ while ischar(tline)
     [pathstr,name,ext] = fileparts(file_path);
     
     % begin to read h5 file
-    scene_idx = round((cnt-1)/test_amt)+1;
+    scene_idx = floor((cnt-1)/test_amt)+1;
     h5_data = hdf5read([H5PATH,name,'.h5'],'prob');
     h5{cnt,1} = h5_data;
     h5{cnt,2} = root_s(scene_idx); 
