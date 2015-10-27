@@ -79,8 +79,8 @@ cnt_FP_label = zeros(40,1);
 % for s_id = 1:1
 for s_id = 1:use_scene
     disp(['-------------------- now process ',num2str(s_id),'/',num2str(use_scene),' scene --------------------']);
-    for data_id = 1:test_amt
-        img_id = ( (s_id-1)*test_amt )+data_id;
+    for data_id = 1:round(test_amt)
+        img_id = floor(( (s_id-1)*test_amt )+data_id);
         scn_index = root_s(s_id);
         data = h5{img_id,1}; % data: 40 x 1
         
@@ -119,8 +119,7 @@ end
 
 % display the result
 for s_id = 1:use_scene
-disp(['scene ',num2str(s_id),' mean accuracy: ',num2str(mean(acc((s_id-1)*data_len+1:s_id*data_len))),...
-        ', sum FP: ',num2str(sum(FP((s_id-1)*data_len+1:s_id*data_len)))])
+disp(['scene ',num2str(s_id),' mean accuracy: ',num2str(mean(acc( floor((s_id-1)*test_amt+1:s_id*test_amt)))),', sum FP: ',num2str(sum(FP( floor((s_id-1)*test_amt+1:s_id*test_amt))))])
 end
 disp(['total mean accuracy: ',num2str(mean(acc)),', sum FP: ',num2str(sum(FP))])
 
