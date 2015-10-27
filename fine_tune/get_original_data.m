@@ -3,9 +3,10 @@ clear all; close all;
 load('../gt_scene.mat');
 load('../total_label.mat');
 
+list = total_label(41:245,2);
 IMAGEPATH = '/media/ponu/DATA/Places205_resize/images256/';
 file_id = fopen([IMAGEPATH,'LMDB_test.txt'],'r');
-H5PATH = '../../finetune_h5/';
+H5PATH = '../../images256_h5';
 
 data_total = 2000;
 prop = 0.8;
@@ -20,7 +21,7 @@ root_s = [1,2,3,5:1:22,24,25,26,28:1:38,40:1:49,51:1:63,65,66,...
 scene_num = length(root_s);
 
 single_gt = zeros(round(test_amt*scene_num),1);  % single label ground truth
-h5 = zeros(round(test_amt*scene_num),40); % h5 data 
+ori_h5 = zeros(round(test_amt*scene_num),205); % h5 data 
 cor_scene = zeros(round(test_amt*scene_num),1); % correspond places scene number
 
 cnt = 1; % count the number of total test image
@@ -34,9 +35,8 @@ while ischar(tline)
     
     % begin to read h5 file
     scene_idx = floor((cnt-1)/test_amt)+1;
-    h5_data = hdf5read([H5PATH,name,'.h5'],'prob');
-    h5(cnt,:) = h5_data;
-    cor_scene(cnt) = root_s(scene_idx); 
+    h5_data = hdf5read([H5PATH,cell2mat(list(scene_idx)),'/',name,'.h5'],'prob');
+    ori_h5(cnt,:) = h5_data;
     
     % cont. to read another line
     tline = fgetl(file_id);
@@ -44,4 +44,4 @@ while ischar(tline)
     
 end
 
-save finetune_data.mat h5 cor_scene single_gt;
+save original_data.mat ori_h5;
