@@ -3,6 +3,7 @@ clear all; close all;
 addpath(genpath('../../hex_graph-master'));
 addpath('../../Research_Toolkit/SVM/libsvm-3.20/matlab');
 addpath(genpath('../'));
+addpath(genpath('../../scene-classification'));
 
 % ----- load data -----
 % turn the .h5 data into mat
@@ -77,11 +78,14 @@ root_s = [1,2,3,5:1:22,24,25,26,28:1:38,40:1:49,51:1:63,65,66,...
 use_scene = length(root_s);
 
 % % train SVM model for each label
-train_data = prob_data(:,1:train_amt,root_s);
-train_data = train_data(:,:);
-label = 
+train_data = h5;
+label = zeros(test_amt*use_scene,1);
+for i=1:length(train_data)
+    s_id = floor((i-1)/test_amt)+1;
+    g = size(find(groundtruth{gt_scene(root_s(s_id))}==3),2);
+    label(i) = g;
+end
 [model,mf,nrm] = training_svm( features , label );
-[model,mf,nrm] = prob_SVM(train_data',train_amt);
 
 acc = [];
 FP = [];
@@ -94,16 +98,23 @@ for s_id = 1:use_scene
     for data_id = 1:round(test_amt)
         img_id = floor(( (s_id-1)*test_amt )+data_id);
         scn_index = root_s(s_id);
-        data = h5{img_id,1}; % data: 40 x 1
+        data = h5(img_id,:); % data: 40 x 1
         
+        [m2,N]=size(data);
+        fea_tmp=(data-ones(m2,1)*mf)*nrm;
+        [predicted, accuracy, d_values] = svmpredict(1 , fea_tmp , model); % 1 represent containing label 3 (outdoor)
+        
+        if predicted ~= 1
+            if ori_h5(img_id,1)~=0
+                data = sumProb_p(ori_h5(img_id,:));
+            end
+        end
+            
         label = single_gt(img_id);
         back_propagate = false;
         [loss, gradients, p_margin, p0] = hex_run(G, data, label, back_propagate);
 
         feature = 1;
-        model=1;
-        mf=1;
-        nrm=1;
         result = searchBest_hr(adj_mat,(p_margin./max(p_margin)),feature,model,mf,nrm);
 
         if scn_index == 94
