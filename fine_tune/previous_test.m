@@ -86,7 +86,7 @@ children = children_run(adj_mat);
 
 % % train SVM model for each label
 train_data = h5;
-[model,mf,nrm] = prob_SVM(train_data,train_amt);
+[model,mf,nrm] = prob_SVM(train_data',test_amt);
 
 acc = [];
 FP = [];
@@ -96,10 +96,10 @@ cnt_FP_label = zeros(40,1);
 % for s_id = 1:1
 for s_id = 1:use_scene
     disp(['-------------------- now process ',num2str(s_id),'/',num2str(use_scene),' scene --------------------']);
-    for data_id = 1:data_len
+    for data_id = 1:round(test_amt)
+    img_id = floor( ((s_id-1)*test_amt)+data_id );
     scn_index = root_s(s_id);
-    data = prob_data(:,data_id,s_id);
-    sum_prob = sumProb_p(data);
+    sum_prob = h5(img_id,:);
 %     label = gt_scene(scn_index);
 %     data_t = data(root_s);
 %     [~,idx] = max(data_t);
@@ -130,8 +130,8 @@ child_list = unique(child_list);
 predict = [];
 for child = 1:length(child_list)
     c = child_list(child);
-    [m2,N]=size(data');
-    fea_tmp=(data'-ones(m2,1)*mf{c})*nrm{c};
+    [m2,N]=size(data);
+    fea_tmp=(data-ones(m2,1)*mf{c})*nrm{c};
     [predicted, accuracy, d_values] = svmpredict(1 , fea_tmp , model{c});
     predict = [predict,predicted];
 end

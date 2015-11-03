@@ -7,8 +7,8 @@ addpath(genpath('../../scene-classification'));
 
 % ----- load data -----
 % turn the .h5 data into mat
-% get_ft_data
-get_original_data
+get_ft_data
+% get_original_data
 
 % load the label name
 t = load('../total_label.mat');
@@ -79,13 +79,13 @@ use_scene = length(root_s);
 
 % % train SVM model for each label
 train_data = h5;
-label = zeros(test_amt*use_scene,1);
+label = zeros(round(test_amt*use_scene),1);
 for i=1:length(train_data)
     s_id = floor((i-1)/test_amt)+1;
     g = size(find(groundtruth{gt_scene(root_s(s_id))}==3),2);
     label(i) = g;
 end
-[model,mf,nrm] = training_svm( features , label );
+[model,mf,nrm] = training_svm( train_data , label );
 
 acc = [];
 FP = [];

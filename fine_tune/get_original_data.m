@@ -35,7 +35,11 @@ while ischar(tline)
     
     % begin to read h5 file
     scene_idx = floor((cnt-1)/test_amt)+1;
-    h5_data = hdf5read([H5PATH,cell2mat(list(scene_idx)),'/',name,'.h5'],'prob');
+    if exist([H5PATH,cell2mat(list(scene_idx)),'/',name,'.h5'])==0
+        h5_data = zeros(1,205);
+    else
+        h5_data = hdf5read([H5PATH,cell2mat(list(scene_idx)),'/',name,'.h5'],'prob');
+    end
     ori_h5(cnt,:) = h5_data;
     
     % cont. to read another line
