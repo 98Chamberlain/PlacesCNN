@@ -76,3 +76,6 @@ target/
 
 # Compiled MEX binaries (all platforms)
 *.mex*
+
+# swap file
+*.swp

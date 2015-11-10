@@ -27,11 +27,10 @@ while ischar(tline)
     
     scene_idx = root_s( floor((cnt-1)./amt)+1 );
     
-    fprintf(writeID,'%s %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n',...
-           file_path,gt_label(scene_idx,:);
+    fprintf(writeID,'%s %d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n',file_path,gt_label(scene_idx,:));
     
     % cont. to read another line
-    tline = fgetl(file_id);
+    tline = fgetl(readID);
     cnt = cnt + 1;
     
 end

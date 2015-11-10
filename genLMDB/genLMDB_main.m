@@ -28,7 +28,10 @@ test_amt = data_total * (1-prop);
 gt_label = ones(scene_num,label_num);
 gt_label = -gt_label;
 for scn_index = 1:205
-    if scn_index == 94
+    i = gt_scene(scn_index);
+    if i == 0
+        gt = [];
+    elseif scn_index == 94
         gt = [1,2,6,7];
     elseif scn_index == 123
         gt = [1,3,4,38,39];

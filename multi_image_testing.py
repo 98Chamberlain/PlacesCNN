@@ -8,31 +8,36 @@ import scipy.io as sio
 import h5py
 
 # task name
-task = 'multi_label_ft'
+task = 'multi_label_origin'
 
 # some path setting
 path = '/media/ponu/DATA/Places205_resize/images256'
 
-MODEL_FILE = 'places205CNN_ft_deploy.prototxt'
-PRETRAINED =  './finetune_model/_iter_450000.caffemodel'
-MEAN_PATH = os.path.join( path , "ft_mean.npy" )
+MODEL_FILE = 'places205CNN_deploy.prototxt'
+PRETRAINED =  './places205CNN_iter_300000.caffemodel'
+MEAN_PATH = './mean.npy'
+# MEAN_PATH = os.path.join( path , "ft_mean.npy" )
 
 # output path
-fc6_out = '../'+task+'_fc6_h5/'
-fc7_out = '../'+task+'_fc6_h5/'
-fc8_out = '../'+task+'_fc6_h5/'
+fc6_out = '/home/ponu/Documents/h5/'+task+'_fc6_h5'
+fc7_out = '/home/ponu/Documents/h5/'+task+'_fc7_h5'
+fc8_out = '/home/ponu/Documents/h5/'+task+'_fc8_h5'
+prob_out = '/home/ponu/Documents/h5/'+task+'_prob_h5'
 
 # testing amount in one forward pass
 batch = 64
+channel = 3
+height = 227
+width = 227
 
 def ensure_dir(d):
     if not os.path.exists(d):
         os.makedirs(d)
 
 def file_len(fname):
-    with open(fname) as f:
-        for i, l in enumerate(f):
-            pass
+    # with open(fname) as f:
+    for i, l in enumerate(fname):
+        pass
     return i + 1
 
 # output_path : string
@@ -67,8 +72,11 @@ file = open( os.path.join( path , "LMDB_test.txt" ), 'r')
 
 cnt = 0
 h5_list = []
-image_set = np.zeros([batch,3,256,256])
+image_set = np.zeros([batch,channel,height,width])
 f_len = file_len(file)
+file.close()
+
+file = open( os.path.join( path , "LMDB_test.txt" ), 'r')
 for line in file:
     cnt += 1
     list_id = (cnt-1)%batch
@@ -80,40 +88,57 @@ for line in file:
 
     # path of h5 file
     h5name = file_name+'.h5'
-    # h5_path = os.path.join( path_out , h5name )
+    h5_path = fc6_out + h5name
     
     if not os.path.exists( h5_path ):
-        h5_list.append = h5name
+        h5_list.append( h5name )
     
         # create image set & path_list
         if ( list_id == batch-1 ) | ( cnt == f_len ) :
             image_path = path+test_path
             input_image = caffe.io.load_image( image_path )
+            input_image = input_image[0:width,0:height,0:channel]
             image_set[list_id,:,:,:] = input_image.swapaxes(0,2)
             image_set*=255
             net.blobs['data'].data[...] = image_set
             net.forward()
             for i, f_name in enumerate(h5_list):
             
-                fc6_path = os.path.join( fc6_out , f_name )
+                fc6_path = fc6_out + f_name
+                ensure_dir( os.path.dirname(fc6_path) )
                 save_h5( fc6_path , net.blobs['fc6'].data[i] , 'fc6' )
                 
-                fc7_path = os.path.join( fc7_out , f_name )
+                fc7_path = fc7_out + f_name
+                ensure_dir( os.path.dirname(fc7_path) )
                 save_h5( fc7_path , net.blobs['fc7'].data[i] , 'fc7' )
                 
-                fc8_path = os.path.join( fc8_out , f_name )
+                fc8_path = fc8_out + f_name
+                ensure_dir( os.path.dirname(fc8_path) )
                 save_h5( fc8_path , net.blobs['fc8'].data[i] , 'fc8' )
+
+                prob_path = prob_out + f_name
+                ensure_dir( os.path.dirname(prob_path) )
+                save_h5( prob_path , net.blobs['prob'].data[i] , 'prob' )
+            h5_list = []
+            image_set = np.zeros([batch,channel,height,width])
+            print "finished batch, size %d" % (i)
+
+        else:
+            image_path = path+test_path
+            input_image = caffe.io.load_image( image_path )
+            input_image = input_image[0:width,0:height,0:channel]
+            image_set[list_id,:,:,:] = input_image.swapaxes(0,2)
                 
-                h5f = h5py.File( h5_path , 'w')
-                h5f.create_dataset('prob',data=prediction[0])
-                h5f.close()
+#                h5f = h5py.File( h5_path , 'w')
+#                h5f.create_dataset('prob',data=prediction[0])
+#                h5f.close()
             
-                input_image = caffe.io.load_image( image_path )
-                prediction = net.predict([input_image])
-                print 'predicted class:', prediction[0].argmax()
-                h5f = h5py.File( h5_path , 'w')
-                h5f.create_dataset('prob',data=prediction[0])
-                h5f.close()
+#                input_image = caffe.io.load_image( image_path )
+#                prediction = net.predict([input_image])
+#                print 'predicted class:', prediction[0].argmax()
+#                h5f = h5py.File( h5_path , 'w')
+#                h5f.create_dataset('prob',data=prediction[0])
+#                h5f.close()
 
 def feed_forward( imageset_org , num , im_path , im_path_out , im_path_fc8):
     imageset = [0]*num

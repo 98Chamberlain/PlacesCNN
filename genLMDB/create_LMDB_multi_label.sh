@@ -42,8 +42,8 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $TRAIN_DATA_ROOT \
-    $DATA/multi_label_LMDB_train.txt \
-    $EXAMPLE/LMDB/multi_label_train
+    $DATA/multi_label_train.txt \
+    $EXAMPLE/multi_label_train
 
 echo "Creating val lmdb..."
 
@@ -52,8 +52,8 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $VAL_DATA_ROOT \
-    $DATA/multi_label_LMDB_val.txt \
-    $EXAMPLE/LMDB/multi_label_val
+    $DATA/multi_label_val.txt \
+    $EXAMPLE/multi_label_val
 
 echo "Creating test lmdb..."
 
@@ -62,7 +62,7 @@ GLOG_logtostderr=1 $TOOLS/convert_imageset \
     --resize_width=$RESIZE_WIDTH \
     --shuffle \
     $TEST_DATA_ROOT \
-    $DATA/multi_label_LMDB_test.txt \
-    $EXAMPLE/LMDB/multi_label_test
+    $DATA/multi_label_test.txt \
+    $EXAMPLE/multi_label_test
 
 echo "Done."
