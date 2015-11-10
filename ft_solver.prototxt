@@ -10,5 +10,5 @@ display: 100
 max_iter: 450000
 momentum: 0.9
 snapshot: 10000
-snapshot_prefix: "/home/ponu/CNNsnapshot/"
+snapshot_prefix: "/home/ponu/CNNsnapshot_multi_label/"
 solver_mode: GPU

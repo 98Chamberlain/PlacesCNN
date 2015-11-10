@@ -3,7 +3,6 @@ layer {
   name: "data"
   type: "Data"
   top: "data"
-  top: "label"
   include {
     phase: TRAIN
   }
@@ -22,7 +21,6 @@ layer {
   name: "data"
   type: "Data"
   top: "data"
-  top: "label"
   include {
     phase: TEST
   }
@@ -36,6 +34,28 @@ layer {
     batch_size: 4
     backend: LMDB
   }
+}
+
+layers {
+    name: "Data"
+    top: "label"
+    type: HDF5_DATA
+    hdf5_data_param {
+        source: "/home/ponu/Documents/PlacesCNN/train.txt"
+        batch_size: 4
+    }
+    include: { phase: TRAIN }
+}
+
+layers {
+    name: "Data"
+    type: HDF5_DATA
+    top: "label"
+    hdf5_data_param {
+        source: "/home/ponu/Documents/PlacesCNN/test.txt"
+        batch_size: 4
+    }
+    include: {phase: TEST }
 }
 
 layer {
