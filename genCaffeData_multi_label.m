@@ -51,19 +51,19 @@ val_amt = length(va_label);
 test_amt = length(te_label);
 
 % generate the multi label data ( nLabel * nImage )
-tr_gt = zeros( nLabel , train_amt )
+tr_gt = zeros( nLabel , train_amt );
 for id = 1:train_amt
 	tr_gt(:,id) = multi_gt(tr_label(id),:)';
 end
 hdf5write([path,'/train_lmdb_multi_label.h5'],'/label',tr_gt);
 
-va_gt = zeros( nLabel , val_amt )
+va_gt = zeros( nLabel , val_amt );
 for id = 1:val_amt
 	va_gt(:,id) = multi_gt(va_label(id),:)';
 end
 hdf5write([path,'/val_lmdb_multi_label.h5'],'/label',va_gt);
 
-te_gt = zeros( nLabel , test_amt )
+te_gt = zeros( nLabel , test_amt );
 for id = 1:test_amt
 	te_gt(:,id) = multi_gt(te_label(id),:)';
 end

@@ -399,7 +399,7 @@ layer {
 }
 layer {
   name: "loss_finetuned"
-  type: "SoftmaxWithLoss"
+  type: "SigmoidCrossEntropyLoss"
   bottom: "fc8"
   bottom: "label"
   top: "loss"
