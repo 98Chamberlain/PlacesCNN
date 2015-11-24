@@ -8,13 +8,13 @@ import scipy.io as sio
 import h5py
 
 # task name
-task = 'ft_multi_label_cross'
+task = 'ft_multi_label_inv'
 
 # some path setting
 path = '/media/ponu/DATA/Places205_resize/images256'
 
 MODEL_FILE = 'places205CNN_ft_deploy.prototxt'
-PRETRAINED =  '/home/ponu/CNNsnapshot_multi_label/_iter_450000.caffemodel'
+PRETRAINED =  '/home/ponu/CNNsnapshot_multi_label_inv/_iter_450000.caffemodel'
 MEAN_PATH = './mean.npy'
 # MEAN_PATH = os.path.join( path , "ft_mean.npy" )
 

@@ -2,13 +2,14 @@ net: "/home/ponu/Documents/PlacesCNN/places205CNN.prototxt"
 test_iter: 100
 test_interval: 1000
 base_lr: 0.001
-lr_policy: "step"
+lr_policy: "inv"
 weight_decay: 0.0005
-stepsize: 10000
+power: 0.5
+# stepsize: 10000
 gamma: 0.1
 display: 100
 max_iter: 450000
 momentum: 0.9
 snapshot: 10000
-snapshot_prefix: "/home/ponu/CNNsnapshot_multi_label/"
+snapshot_prefix: "/home/ponu/CNNsnapshot_multi_label_inv/"
 solver_mode: GPU
