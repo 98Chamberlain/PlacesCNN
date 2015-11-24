@@ -1,8 +1,8 @@
-net: "/home/ponu/Documents/PlacesCNN/places205CNN.prototxt"
+net: "/home/ponu/Documents/PlacesCNN/places205CNN_lr0.prototxt"
 test_iter: 1000
 test_interval: 1000
 base_lr: 0.001
-lr_policy: "sigmoid"
+lr_policy: "inv"
 weight_decay: 0.0005
 power: 0.5
 stepsize: 10000
@@ -11,5 +11,5 @@ display: 100
 max_iter: 450000
 momentum: 0.9
 snapshot: 10000
-snapshot_prefix: "/home/ponu/CNNsnapshot_multi_label_sig/"
+snapshot_prefix: "/home/ponu/CNNsnapshot_multi_label_lr0/"
 solver_mode: GPU

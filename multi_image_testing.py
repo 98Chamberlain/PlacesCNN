@@ -8,13 +8,16 @@ import scipy.io as sio
 import h5py
 
 # task name
-task = 'ft_multi_label_inv'
+task = 'ft_multi_label_sig'
+# task = 'PlacesCNN_test'
 
 # some path setting
 path = '/media/ponu/DATA/Places205_resize/images256'
 
 MODEL_FILE = 'places205CNN_ft_deploy.prototxt'
-PRETRAINED =  '/home/ponu/CNNsnapshot_multi_label_inv/_iter_450000.caffemodel'
+PRETRAINED =  '/home/ponu/CNNsnapshot_multi_label_sig/_iter_450000.caffemodel'
+# MODEL_FILE = 'places205CNN_deploy.prototxt'
+# PRETRAINED = 'places205CNN_iter_300000.caffemodel'
 MEAN_PATH = './mean.npy'
 # MEAN_PATH = os.path.join( path , "ft_mean.npy" )
 
@@ -121,7 +124,7 @@ for line in file:
                 save_h5( prob_path , net.blobs['prob'].data[i] , 'prob' )
             h5_list = []
             image_set = np.zeros([batch,channel,height,width])
-            print "finished batch, size %d" % (i)
+            print "finished batch, size %d" % (i+1)
 
         else:
             image_path = path+test_path
