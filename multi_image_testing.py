@@ -8,18 +8,18 @@ import scipy.io as sio
 import h5py
 
 # task name
-task = 'ft_multi_label_sig'
+task = 'ft_multi_label_lr0'
 # task = 'PlacesCNN_test'
 
 # some path setting
 path = '/media/ponu/DATA/Places205_resize/images256'
 
-MODEL_FILE = 'places205CNN_ft_deploy.prototxt'
-PRETRAINED =  '/home/ponu/CNNsnapshot_multi_label_sig/_iter_450000.caffemodel'
+MODEL_FILE = 'places205CNN_lr0_deploy.prototxt'
+PRETRAINED =  '/home/ponu/CNNsnapshot_multi_label_lr0/_iter_450000.caffemodel'
+MEAN_PATH = os.path.join( path , "ft_mean.npy" )
 # MODEL_FILE = 'places205CNN_deploy.prototxt'
 # PRETRAINED = 'places205CNN_iter_300000.caffemodel'
-MEAN_PATH = './mean.npy'
-# MEAN_PATH = os.path.join( path , "ft_mean.npy" )
+# MEAN_PATH = './mean.npy'
 
 # output path
 fc6_out = '/home/ponu/Documents/h5/'+task+'_fc6_h5'
