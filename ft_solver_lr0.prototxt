@@ -8,8 +8,8 @@ power: 0.5
 stepsize: 10000
 gamma: 0.1
 display: 100
-max_iter: 450000
+max_iter: 300000
 momentum: 0.9
 snapshot: 10000
-snapshot_prefix: "/home/ponu/CNNsnapshot_multi_label_lr0/"
+snapshot_prefix: "/home/ponu/CNNsnapshot_multi_label_lr0_crop/"
 solver_mode: GPU

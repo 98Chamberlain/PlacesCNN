@@ -7,8 +7,8 @@ layer {
     phase: TRAIN
   }
   transform_param {
-    mirror: false
-    crop_size: 256
+    mirror: true
+    crop_size: 227
     mean_file: "/media/ponu/DATA/Places205_resize/images256/Places_mean.binaryproto"
   }
   data_param {
@@ -409,7 +409,7 @@ layer {
 }
 layer {
   name: "loss_finetuned"
-  type: "SigmoidCrossEntropyLoss"
+  type: "EuclideanLoss"
   bottom: "fc8"
   bottom: "label"
   top: "loss"

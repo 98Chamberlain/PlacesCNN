@@ -8,14 +8,14 @@ import scipy.io as sio
 import h5py
 
 # task name
-task = 'ft_multi_label_lr0'
+task = 'ft_multi_label_lr0_crop'
 # task = 'PlacesCNN_test'
 
 # some path setting
 path = '/media/ponu/DATA/Places205_resize/images256'
 
 MODEL_FILE = 'places205CNN_lr0_deploy.prototxt'
-PRETRAINED =  '/home/ponu/CNNsnapshot_multi_label_lr0/_iter_450000.caffemodel'
+PRETRAINED =  '/home/ponu/CNNsnapshot_multi_label_lr0_crop/_iter_300000.caffemodel'
 MEAN_PATH = os.path.join( path , "ft_mean.npy" )
 # MODEL_FILE = 'places205CNN_deploy.prototxt'
 # PRETRAINED = 'places205CNN_iter_300000.caffemodel'
@@ -30,8 +30,8 @@ prob_out = '/home/ponu/Documents/h5/'+task+'_prob_h5'
 # testing amount in one forward pass
 batch = 64
 channel = 3
-height = 256
-width = 256
+height = 227
+width = 227
 
 def ensure_dir(d):
     if not os.path.exists(d):
