@@ -7,13 +7,13 @@ layer {
     phase: TRAIN
   }
   transform_param {
-    mirror: false
-    crop_size: 256
+    mirror: true
+    crop_size: 227
     mean_file: "/media/ponu/DATA/Places205_resize/images256/Places_mean.binaryproto"
   }
   data_param {
     source: "/media/ponu/DATA/Places205_resize/images256/train_lmdb"
-    batch_size: 4
+    batch_size: 64
     backend: LMDB
   }
 }
@@ -25,13 +25,13 @@ layer {
     phase: TEST
   }
   transform_param {
-    mirror: false
-    crop_size: 256
+    mirror: true
+    crop_size: 227
     mean_file: "/media/ponu/DATA/Places205_resize/images256/Places_mean.binaryproto"
   }
   data_param {
     source: "/media/ponu/DATA/Places205_resize/images256/val_lmdb"
-    batch_size: 4
+    batch_size: 64
     backend: LMDB
   }
 }
@@ -42,7 +42,7 @@ layers {
     type: HDF5_DATA
     hdf5_data_param {
         source: "/home/ponu/Documents/PlacesCNN/train.txt"
-        batch_size: 4
+        batch_size: 64
     }
     include: { phase: TRAIN }
 }
@@ -53,7 +53,7 @@ layers {
     top: "label"
     hdf5_data_param {
         source: "/home/ponu/Documents/PlacesCNN/test.txt"
-        batch_size: 4
+        batch_size: 64
     }
     include: {phase: TEST }
 }
@@ -282,7 +282,7 @@ layer {
   }
 }
 layer {
-  name: "fc6_ft"
+  name: "fc6"
   type: "InnerProduct"
   bottom: "pool5"
   top: "fc6"
@@ -389,7 +389,7 @@ layer {
 
 layer {
   name: "accuracy_finetuned"
-  type: "Accuracy"
+  type: "EuclideanLoss"
   bottom: "fc8"
   bottom: "label"
   top: "accuracy"
@@ -399,7 +399,8 @@ layer {
 }
 layer {
   name: "loss_finetuned"
-  type: "SigmoidCrossEntropyLoss"
+  type: "EuclideanLoss"
+#  type: "SigmoidCrossEntropyLoss"
   bottom: "fc8"
   bottom: "label"
   top: "loss"

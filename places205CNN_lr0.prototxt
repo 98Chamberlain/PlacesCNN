@@ -399,7 +399,7 @@ layer {
 
 layer {
   name: "accuracy_finetuned"
-  type: "Accuracy"
+  type: "EuclideanLoss"
   bottom: "fc8"
   bottom: "label"
   top: "accuracy"

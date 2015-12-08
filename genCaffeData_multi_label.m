@@ -46,25 +46,30 @@ for i = 1:nLabel
 	multi_gt(i,groundtruth{i}) = 1;
 end
 
+desire_list = [2,3,5,9];
+% desire_list = [1:1:40]; for all
+desire_gt = multi_gt(:,desire_list);
+nDesire = length(desire_list);
+
 train_amt = length(tr_label);
 val_amt = length(va_label);
 test_amt = length(te_label);
 
 % generate the multi label data ( nLabel * nImage )
-tr_gt = zeros( nLabel , train_amt );
-for id = 1:train_amt
-	tr_gt(:,id) = multi_gt(tr_label(id),:)';
+tr_gt = zeros( nDesire , train_amt );
+for id = 1:nDesire
+	tr_gt(:,id) = desire_gt(tr_label(id),:)';
 end
-hdf5write([path,'/train_lmdb_multi_label.h5'],'/label',tr_gt);
+hdf5write([path,'/train_lmdb_multi_label_layer1.h5'],'/label',tr_gt);
 
-va_gt = zeros( nLabel , val_amt );
+va_gt = zeros( nDesire , val_amt );
 for id = 1:val_amt
-	va_gt(:,id) = multi_gt(va_label(id),:)';
+	va_gt(:,id) = desire_gt(va_label(id),:)';
 end
-hdf5write([path,'/val_lmdb_multi_label.h5'],'/label',va_gt);
+hdf5write([path,'/val_lmdb_multi_label_layer1.h5'],'/label',va_gt);
 
-te_gt = zeros( nLabel , test_amt );
+te_gt = zeros( nDesire , test_amt );
 for id = 1:test_amt
-	te_gt(:,id) = multi_gt(te_label(id),:)';
+	te_gt(:,id) = desire_gt(te_label(id),:)';
 end
-hdf5write([path,'/test_lmdb_multi_label.h5'],'/label',te_gt);
+hdf5write([path,'/test_lmdb_multi_label_layer1.h5'],'/label',te_gt);
