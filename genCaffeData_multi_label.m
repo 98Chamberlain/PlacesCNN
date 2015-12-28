@@ -57,7 +57,7 @@ test_amt = length(te_label);
 
 % generate the multi label data ( nLabel * nImage )
 tr_gt = zeros( nDesire , train_amt );
-for id = 1:nDesire
+for id = 1:train_amt
 	tr_gt(:,id) = desire_gt(tr_label(id),:)';
 end
 hdf5write([path,'/train_lmdb_multi_label_layer1.h5'],'/label',tr_gt);
