@@ -4,26 +4,30 @@ load('../gt_scene.mat');
 load('../total_label.mat');
 
 IMAGEPATH = '/media/ponu/DATA/Places205_resize/images256/';
-trainID = fopen('LMDB_train.txt','w');
-valID = fopen('LMDB_val.txt','w');
-testID = fopen('LMDB_test.txt','w');
+trainID = fopen('train_with_label.txt','w');
+valID = fopen('val_with_label.txt','w');
+testID = fopen('test_with_label.txt','w');
 
-data_total = 2000;
+% data_total = 2000;
 prop = 0.8;
-train_amt = data_total * prop * prop;
-val_amt = data_total * prop * (1-prop);
-test_amt = data_total * (1-prop);
+% train_amt = data_total * prop * prop;
+% val_amt = data_total * prop * (1-prop);
+% test_amt = data_total * (1-prop);
 
 for i = 1:205
     if gt_scene(i) ~= 0
         image = dir( [IMAGEPATH , total_label{i+40,2},'/*.jpg'] );
+        data_total = length(image);
+        train_amt = round(data_total * prop * prop);
+        val_amt = round(data_total * prop * (1-prop));
+        test_amt = round(data_total * (1-prop));
         for j = 1:data_total
             if j>=1 && j<=train_amt
-                fprintf(trainID,'%s %d\n',[total_label{i+40,2},'/',image(j).name],gt_scene(i));
+                fprintf(trainID,'%s %d\n',[total_label{i+40,2},'/',image(j).name],i);
             elseif j>= train_amt+1 && j<= train_amt+val_amt
-                fprintf(valID,'%s %d\n',[total_label{i+40,2},'/',image(j).name],gt_scene(i));
+                fprintf(valID,'%s %d\n',[total_label{i+40,2},'/',image(j).name],i);
             else
-                fprintf(testID,'%s %d\n',[total_label{i+40,2},'/',image(j).name],gt_scene(i));
+                fprintf(testID,'%s %d\n',[total_label{i+40,2},'/',image(j).name],i);
             end
         end
     end
