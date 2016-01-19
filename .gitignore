@@ -79,3 +79,7 @@ target/
 
 # swap file
 *.swp
+
+# data file
+*.txt
+*.json
